@@ -34,6 +34,4 @@ Once the CNN is trained, here's how it actually controls the drone.
 
 Whenever the CNN recognizes a gesture, it sends a message to a Raspberry Pi Pico. The Pico receives a number from 0 to 4096, translate that number into voltage and sends it to a DAC (digital to analog converter). The voltage then sent to the drone controller, which is connected to the DAC through jumper wires. This basically tricks the controller into thinking someone actually pressed the joystick.
 
-the formula to translate the number 0 to 4096 into the voltage is
-
 Since there are 3 axes of movement (up/down, forward/backward, left/right), there are 3 DACs, one for each axis. Whenever a number is sent to the Pico, the Pico handles which DAC it goes to. For example, to move up, the message is `('A', 1300)`: `'A'` says which DAC to send the voltage to, and `1300` represents the amount of voltage, not translated yet.
